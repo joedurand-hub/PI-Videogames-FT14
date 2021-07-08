@@ -7,14 +7,15 @@ const router = express.Router();
 const axios = require('axios').default;
 const { Videogame } = require('../db');
 const {API_KEY} = process.env;
-// Obtener el detalle de un videojuego en particular
-// Debe traer solo los datos pedidos en la ruta de detalle de videojuego
-// Incluir los géneros asociados
+// Obtener el detalle de un videojuego en particular ---> LISTO.
+// Debe traer solo los datos pedidos en la ruta de detalle de videojuego --> LISTO.
+// Incluir los géneros asociados --> LISTO.
 
 async function getGamesById(req, res) {
     try {
         const { id } = req.params;  
         const response = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)
+        
         if(id) {
             const gamesData = {
                 name: response.data.name,
@@ -25,7 +26,6 @@ async function getGamesById(req, res) {
                 description: response.data.description,
                 genre: response.data.genres.map(obj => obj.name)
             }
-            console.log(gamesData)
             return res.json(gamesData)
             
         } else {

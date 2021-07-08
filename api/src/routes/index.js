@@ -9,11 +9,11 @@ const { getGamesById } = require('../controllers/getGamesById')             // G
 const { postGames } = require('../controllers/postGames')
 
 
-router.get('/videogames', getGames) 
-router.get('/videogames', getGamesByName)
-router.get('/genres', getGenres) 
-router.get('/videogame/:id', getGamesById)
-router.post('/videogames', postGames)
+router.get('/videogames', getGames)         // FUNCIONA
+router.get('/videogame', getGamesByName)    // FUNCIONA
+router.get('/genres', getGenres)            //
+router.get('/videogame/:id', getGamesById)  // FUNCIONA
+router.post('/videogames', postGames)       // 
 
 
 module.exports = router;
