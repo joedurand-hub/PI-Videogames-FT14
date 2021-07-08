@@ -5,34 +5,51 @@ const path = require('path');
 const express = require('express');
 const router = express.Router();
 const axios = require('axios').default;
-const { Videogame } = require('../db');
+const { Videogame, Genre } = require('../db');
 const {API_KEY} = process.env;
-// Obtener un listado de los primeras 15 videojuegos
-// Debe devolver solo los datos necesarios para la ruta principal
-// Imagen
-// Nombre
-// Géneros
+// Obtener un listado de los primeras 15 videojuegos --> LISTO.
+// Debe devolver solo los datos necesarios para la ruta principal --> LISTO
+// ¿Aumentar a 100 la cantidad de datos?
 
 async function getGames(req, res) {
     try {
         const gamesData = [];
         const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)
-        const resultsGames = response.data.results.slice(0, 100)
+        const resultsGames = response.data.results.slice(0, 15)
       
         for (let data of resultsGames) {
                  gamesData.push({
-                // id: data.id,
                 name: data.name,
                 img: data.background_image,
                 genre: data.genres.map(obj => obj.name)
-                // releaseDate: data.released,
-                // rating: data.rating,
-                // platforms: data.platforms.map(obj => obj.platform.name),
-             //   description: Las descripciones están dentro de cada juego al que accedo por ID.
-        //Necesito tomar esa propiedad y exportarla para almacenarla junto a todos los otros datos?.
+
                 })
         }
-         
+
+        // const responseNext = await axios.get(response.data.next)
+        // const resultsGamesNext = responseNext.data.results.slice(0, 15)
+        // for (let data of resultsGamesNext) {
+        //     gamesData.push({
+        //    name: data.name,
+        //    img: data.background_image,
+        //    genre: data.genres.map(obj => obj.name)
+
+        //    })
+        // }
+
+        // const responseNext2 = await axios.get(responseNext.data.next)
+        // const resultsGamesNext2 = responseNext2.data.results.slice(0, 15)
+        // for (let data of resultsGamesNext2) {
+        //     gamesData.push({
+        //    name: data.name,
+        //    img: data.background_image,
+        //    genre: data.genres.map(obj => obj.name)
+
+        //    })
+        // }
+
+        await Videogame.findAll({include: Genre})
+         //bulkCreate para guardar en la DB la respuesta de la API
         return res.json(gamesData)
 
     } catch (error) {

@@ -12,8 +12,35 @@ const {API_KEY} = process.env;
 
 async function getGamesByName(req, res) {
     try {
-        const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)
-        console.log(response)
+        const { name } = req.query;
+        const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&search=${name}`)
+        console.log("-------------")
+        console.log(response.data.results) // --> Trae el array con los name que coinciden
+        console.log("-------------")
+
+        // if(name) {
+        //     const resNames = response.data.results.slice(0, 15)
+        //     console.log(resNames)
+        //     // const gamesData = {
+        //     //     name: response.data.name,
+        //     //     img: response.data.background_image,
+        //     //     releaseDate: response.data.released,
+        //     //     rating: response.data.rating,
+        //     //     platforms: response.data.platforms.map(obj => obj.platform.name),
+        //     //     description: response.data.description,
+        //     //     genre: response.data.genres.map(obj => obj.name)
+        //     // }
+        //     return res.json(resNames)
+        // } else {
+        //     let gamesNames = await Videogame.findOne({
+        //         where: {
+        //             name: name, 
+        //         },
+        //         order: [[ 'createdAt', 'DESC' ]],
+        //     })
+        //     return res.json(gamesNames)
+        // }
+      
     } catch (error) {
         console.log(error);
         res.status(500).json({error: 'La solicitud de /videogames falló'})

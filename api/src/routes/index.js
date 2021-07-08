@@ -12,7 +12,7 @@ const { postGames } = require('../controllers/postGames')
 router.get('/videogames', getGames) 
 router.get('/videogames', getGamesByName)
 router.get('/genres', getGenres) 
-router.get('/videogame/:idVideogame', getGamesById)
+router.get('/videogame/:id', getGamesById)
 router.post('/videogames', postGames)
 
 
