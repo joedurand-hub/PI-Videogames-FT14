@@ -7,16 +7,22 @@ const router = express.Router();
 const axios = require('axios').default;
 const { Genre } = require('../db');
 const {API_KEY} = process.env;
-// Obtener todos los tipos de géneros de videojuegos posibles
-// En una primera instancia deberán traerlos desde rawg y guardarlos en su propia base de datos y luego ya utilizarlos desde allí
+// Obtener todos los tipos de géneros de videojuegos posibles --> LISTO.
+// En una primera instancia deberán traerlos desde rawg y guardarlos en su propia base de datos --> LISTO.
+// y luego ya utilizarlos desde allí --> LISTO.
 
 async function getGenres(req, res) {
     try {
-        const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)
-        console.log(response)
+        const response = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
+        const genreGames = response.data.results.map(element => {
+            Genre.create({name: element.name})
+            return element.name;
+           });
+         return res.json(genreGames);
+
     } catch (error) {
         console.log(error);
-        res.status(500).json({error: 'La solicitud de /videogames falló'})
+        res.status(500).json({error: 'No se han podido traer los géneros de los videojuegos'})
     }
 };
 

@@ -2,18 +2,18 @@ const { Router } = require('express');
 const router = require('express').Router();
 
 
-const { getGames } = require('../controllers/getGames')                     // GET https://api.rawg.io/api/games
-const { getGamesByName } = require('../controllers/getGamesByName')         // GET https://api.rawg.io/api/games?search={game}
-const { getGenres } = require('../controllers/getGenres')                   // GET https://api.rawg.io/api/genres
-const { getGamesById } = require('../controllers/getGamesById')             // GET https://api.rawg.io/api/games/{id}
+const { getGames } = require('../controllers/getGames')
+const { getGamesByName } = require('../controllers/getGamesByName')
+const { getGenres } = require('../controllers/getGenres')
+const { getGamesById } = require('../controllers/getGamesById')
 const { postGames } = require('../controllers/postGames')
 
 
 router.get('/videogames', getGames)         // FUNCIONA
 router.get('/videogame', getGamesByName)    // FUNCIONA
-router.get('/genres', getGenres)            //
+router.get('/genres', getGenres)            // FUNCIONA
 router.get('/videogame/:id', getGamesById)  // FUNCIONA
-router.post('/videogames', postGames)       // 
+router.post('/videogames', postGames)       // FUNCIONA
 
 
 module.exports = router;
