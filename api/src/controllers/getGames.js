@@ -12,6 +12,9 @@ const {API_KEY} = process.env;
 // ¿Aumentar a 100 la cantidad de datos?
 
 async function getGames(req, res) {
+
+
+    
     try {
         const gamesData = [];
         const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)
@@ -25,28 +28,21 @@ async function getGames(req, res) {
 
                 })
         }
+        const responseNext = await axios.get(response.data.next)
+        function nextData() {
+            const resultsGamesNext = responseNext.data.results.slice(0, 15)
+                for (let data of resultsGamesNext) {
+                    gamesData.push({
+                    name: data.name,
+                    img: data.background_image,
+                    genre: data.genres.map(obj => obj.name)
 
-        // const responseNext = await axios.get(response.data.next)
-        // const resultsGamesNext = responseNext.data.results.slice(0, 15)
-        // for (let data of resultsGamesNext) {
-        //     gamesData.push({
-        //    name: data.name,
-        //    img: data.background_image,
-        //    genre: data.genres.map(obj => obj.name)
-
-        //    })
-        // }
-
-        // const responseNext2 = await axios.get(responseNext.data.next)
-        // const resultsGamesNext2 = responseNext2.data.results.slice(0, 15)
-        // for (let data of resultsGamesNext2) {
-        //     gamesData.push({
-        //    name: data.name,
-        //    img: data.background_image,
-        //    genre: data.genres.map(obj => obj.name)
-
-        //    })
-        // }
+                })
+            }
+        }
+        nextData();
+        nextData();
+        nextData();
 
         await Videogame.findAll({include: Genre})
          //bulkCreate para guardar en la DB la respuesta de la API
