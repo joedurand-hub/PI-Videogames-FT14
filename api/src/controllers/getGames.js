@@ -10,6 +10,9 @@ const {API_KEY} = process.env;
 // Obtener un listado de los primeras 15 videojuegos --> LISTO.
 // Debe devolver solo los datos necesarios para la ruta principal --> LISTO
 // ¿Aumentar a 100 la cantidad de datos?
+// Obtener un listado de las primeros 15 videojuegos que contengan la palabra ingresada como query parameter --> LISTO
+// Si no existe ningún videojuego mostrar un mensaje adecuado --> LISTO
+
 
 async function getGames(req, res) {
 
@@ -76,11 +79,23 @@ async function getGames(req, res) {
                     })
                 }
             }
+            function nextData10() {
+                const resultsGamesNext10 = responseNext.data.results.slice(0, 10)
+                    for (let data of resultsGamesNext10) {
+                        gamesData.push({
+                        name: data.name,
+                        img: data.background_image,
+                        genre: data.genres.map(obj => obj.name)
+    
+                    })
+                }
+            }
                 nextData();
                 nextData();
                 nextData();
                 nextData();
                 nextData();
+                nextData10();
 
                 await Videogame.findAll({include: Genre})
                     //bulkCreate para guardar en la DB la respuesta de la API quizás?

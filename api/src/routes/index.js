@@ -3,7 +3,6 @@ const router = require('express').Router();
 
 
 const { getGames } = require('../controllers/getGames')
-const { getGamesByName } = require('../controllers/getGamesByName')
 const { getGenres } = require('../controllers/getGenres')
 const { getGamesById } = require('../controllers/getGamesById')
 const { postGames } = require('../controllers/postGames')
