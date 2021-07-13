@@ -1,0 +1,6 @@
+nav {
+    background: rgba(241, 241, 241, 0.719);
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
