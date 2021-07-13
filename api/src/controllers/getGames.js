@@ -23,44 +23,34 @@ async function getGames(req, res) {
     const resultsGames = response.data.results.slice(0, 15)
 
     const responseNames = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&search=${name}`)
-    const resNames = responseNames.data.results.slice(0, 15)
 
+    const resNames = responseNames.data.results.slice(0, 14)
         if(name) {
-            try {
-              if(name) {
-                    
+            try { // Trae de la DB y los primeros 15 que coincidan por query.name
+                let gamesNamesData = await Videogame.findAll()
                     for (let resFilteredNames of resNames) {
-                        gamesData.push({
+                        resFilteredNames = {
                         name: resFilteredNames.name,
                         img: resFilteredNames.background_image,
                         releaseDate: resFilteredNames.released,
                         rating: resFilteredNames.rating,
                         platforms: resFilteredNames.platforms.map(obj => obj.platform.name),
                         description: resFilteredNames.description,
-                        genre: resFilteredNames.genres.map(obj => obj.name),
-                        
-                    })
+                        genre: resFilteredNames.genres.map(obj => obj.name),   
+                    }
+                    gamesNamesData.push(resFilteredNames)
                 }
-                return res.json(gamesData)
-        } else  {
-                let gamesNames = await Videogame.findOne({
-                            where: {
-                                name: name, 
-                            },
-                            order: [[ 'createdAt', 'DESC' ]],
-                        })
-                        return res.json(gamesNames)
-              } 
+                const resultData = gamesNamesData.slice(0, 15)
+                return res.json(resultData)
               
             } catch (error) {
                 console.log(error);
                 res.status(500).json({error: 'La solicitud de /videogames falló'})
         }
-
     } else {
 
         try {
-            for (let data of resultsGames) {
+            for (let data of resultsGames) { // Traigo los 15.
                 gamesData.push({
                 name: data.name,
                 img: data.background_image,
@@ -90,16 +80,16 @@ async function getGames(req, res) {
                     })
                 }
             }
-                nextData();
-                nextData();
-                nextData();
-                nextData();
-                nextData();
-                nextData10();
+            nextData();
+            nextData();
+            nextData();
+            nextData();
+            nextData();
+            nextData10();
 
-                await Videogame.findAll({include: Genre})
-                    //bulkCreate para guardar en la DB la respuesta de la API quizás?
-                return res.json(gamesData)
+            await Videogame.findAll({include: Genre})
+            //bulkCreate para guardar en la DB la respuesta de la API quizás?
+            return res.json(gamesData)
         }
          catch (error) {
             console.log(error);

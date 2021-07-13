@@ -4,9 +4,8 @@ const express = require('express');
 const router = express.Router();
 const { v4: uuidv4 } = require('uuid');
 const { Videogame } = require('../db');
-
-// Recibe los datos recolectados desde el formulario controlado de la ruta de creación de videojuego por body
-// Crea un videojuego en la base de datos
+// Recibe los datos recolectados desde el formulario controlado de la ruta de creación de videojuego por body --> LISTO.
+// Crea un videojuego en la base de datos --> LISTO.
 
 async function postGames(req, res) {
     try {
@@ -24,7 +23,7 @@ async function postGames(req, res) {
         } else {
            let gameCreate = await Videogame.create({
 				id: uuidv4(),
-				name: name.toLowerCase(),
+				name: name,
                 img: img,
 				releaseDate: releaseDate,
 				rating: rating,

@@ -11,7 +11,7 @@ const { postGames } = require('../controllers/postGames')
 router.get('/videogames', getGames)         // FUNCIONA
 router.get('/genres', getGenres)            // FUNCIONA
 router.get('/videogame/:id', getGamesById)  // FUNCIONA
-router.post('/videogames', postGames)       // FUNCIONA
+router.post('/videogame', postGames)       // FUNCIONA
 
 
 module.exports = router;
