@@ -1,5 +1,5 @@
 import './App.css';
-import Nav from './3-components/Nav/Nav';
+import LandingPage from './3-components/1-Landing/Landing';
 
 
 // Va a renderizar las rutas y traer los componentes principales
@@ -11,8 +11,7 @@ import Nav from './3-components/Nav/Nav';
 function App() {
   return (
     <div className="App">
-      <h1>Henry Videogames</h1>
-      <Nav/>
+      <LandingPage/>
     </div>
   );
 }

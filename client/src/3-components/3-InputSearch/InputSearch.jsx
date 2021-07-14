@@ -7,10 +7,8 @@ export default function Search() {
     return (
         <div>
         <form>
-             <input type="search" placeholder="Insert a name" className={InputSearch}> </input>
-            <button type="submit" value="Buscar">
-                Buscar
-            </button>
+            <input type="search" placeholder="Insert a name" className={InputSearch}></input>
+            <button type="submit" value="Buscar"> Buscar </button>
         </form>
         </div>
     )
