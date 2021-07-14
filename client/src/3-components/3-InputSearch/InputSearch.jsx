@@ -2,7 +2,7 @@ import React from 'react';
 import InputSearch from './InputSearch.css'
 
 
-export default function Search() {
+export function Search() {
 
     return (
         <div>
@@ -14,3 +14,4 @@ export default function Search() {
     )
 };
 
+export default Search;

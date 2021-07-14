@@ -1,6 +1,7 @@
 import React from 'react';
-import Nav from '../../4-Nav/Nav'
-// Es un componente dentro de Landing Page
+import Nav from '../../4-Nav/Nav.jsx'
+import FilterGames from '../FilterGames/FilterGames'
+
 // Posee un Nav con dentro:
 //  -Tiene el componente inputSearch para buscar videojuegos
 //  -Tiene el componente Create (botón) que lleva a otra pestaña con un form para crear un juego
@@ -12,6 +13,7 @@ function Home() {
     return (
       <div>
         <Nav/>
+        <FilterGames/>
       </div>
     )
   };
