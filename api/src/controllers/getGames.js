@@ -4,7 +4,6 @@ const fs = require('fs');
 const path = require('path');
 const express = require('express');
 const router = express.Router();
-const { Op } = require('sequelize')
 const axios = require('axios').default;
 const { Videogame, Genre } = require('../db');
 const {API_KEY} = process.env;
@@ -19,13 +18,12 @@ async function getGames(req, res) {
 
     const { name } = req.query;
     const gamesData = [];
-
     const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)
     const resultsGames = response.data.results.slice(0, 15)
-
+    
     const responseNames = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&search=${name}`)
-
     const resNames = responseNames.data.results
+
         if(name) {
             try { // Trae de la DB y de API los primeros 15 que coincidan por query.name
                 let gamesNamesData = await Videogame.findAll({
@@ -94,7 +92,6 @@ async function getGames(req, res) {
             nextData10();
 
             await Videogame.findAll({include: Genre})
-            //bulkCreate para guardar en la DB la respuesta de la API quizás?
             return res.json(gamesData)
         }
          catch (error) {
@@ -102,10 +99,10 @@ async function getGames(req, res) {
             res.status(500).json({error: 'La solicitud de /videogames falló'})
         }
     } 
+}
 
-
-
-
+module.exports = {
+    getGames
 }
 
 module.exports = {
