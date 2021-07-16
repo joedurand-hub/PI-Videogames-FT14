@@ -12,7 +12,7 @@ export function FilterGames() {
         <label htmlFor=""></label>
         <input type="text" />
         <label htmlFor=""></label>
-        <button></button>
+        <button>Aplicar Filtros</button>
       </form>
       <p>--- Termina FilterGame</p>
   </div>
