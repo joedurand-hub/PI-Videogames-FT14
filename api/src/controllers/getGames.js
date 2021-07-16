@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const express = require('express');
 const router = express.Router();
+const { Op } = require('sequelize')
 const axios = require('axios').default;
 const { Videogame, Genre } = require('../db');
 const {API_KEY} = process.env;

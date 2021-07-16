@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const { v4: uuidv4 } = require('uuid');
-const { Videogame } = require('../db');
+const { Videogame, Genre } = require('../db');
 // Recibe los datos recolectados desde el formulario controlado de la ruta de creación de videojuego por body --> LISTO.
 // Crea un videojuego en la base de datos --> LISTO.
 
@@ -29,10 +29,16 @@ async function postGames(req, res) {
 				rating: rating,
 				platforms: platforms,
 				description: description,
-				genre: genre
 			});
-
-            return res.json(gameCreate)
+            for await(let genreVideogame of genre) {
+                let genreGame = await Genre.findOne({
+                    where: {
+                        name: genreVideogame
+                    }
+                })
+                await gameCreate.addGenre(genreGame);
+            }
+            res.json(gameCreate)
         }
    
     } catch (error) {
