@@ -21,16 +21,8 @@ export function Search() {
         e.preventDefault();
         dispatch(SearchForGamesByName(name))
     };
-    const myVideogames = useSelector(dataStore => dataStore.searchGames)
-    {myVideogames?.map((videogame) => {
-        console.log(videogame) // funciona
-        return (
-            <React.Fragment>
-                <Card key={videogame.id} name={videogame.name} img={videogame.img} genre={videogame.genre}/>
-            </React.Fragment>
-        )
-    })}
     return (
+
         <div>
         <form>
             <input type="search" placeholder="Insert a name" className={InputSearch}

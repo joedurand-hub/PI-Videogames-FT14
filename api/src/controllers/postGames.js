@@ -29,19 +29,19 @@ async function postGames(req, res) {
 				rating: rating,
 				platforms: platforms,
 				description: description,
+                genre: genre,
 			});
-            for await(let genreVideogame of genre) {
-                let genreGame = await Genre.findOne({
+            [...genre].forEach(async (genre) => {
+                let genreVideogame = await Genre.findOne({
                     where: {
-                        name: genreVideogame
+                        name: genre
                     }
                 })
-                await gameCreate.addGenre(genreGame);
-            }
+                await gameCreate.addGenre(genreVideogame);
+            })
             res.json(gameCreate)
-        }
-   
-    } catch (error) {
+          }
+        } catch (error) {
         console.log(error);
         res.status(500).json({error: 'La solicitud para crear un nuevo Videojuego falló'})
     }

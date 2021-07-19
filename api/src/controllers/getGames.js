@@ -36,12 +36,9 @@ async function getGames(req, res) {
                   });
                     for (let resFilteredNames of resNames) {
                         resFilteredNames = {
+                        id: resFilteredNames.id,
                         name: resFilteredNames.name,
                         img: resFilteredNames.background_image,
-                        releaseDate: resFilteredNames.released,
-                        rating: resFilteredNames.rating,
-                        platforms: resFilteredNames.platforms.map(obj => obj.platform.name),
-                        description: resFilteredNames.description,
                         genre: resFilteredNames.genres.map(obj => obj.name),   
                     }
                     gamesNamesData.push(resFilteredNames)
@@ -55,8 +52,11 @@ async function getGames(req, res) {
     } else {
 
         try {
+
+            let gamesAllData = await Videogame.findAll({include: Genre})
             for (let data of resultsGames) { // Traigo los 15.
-                gamesData.push({
+                gamesAllData.push({
+                id: data.id,
                 name: data.name,
                 img: data.background_image,
                 genre: data.genres.map(obj => obj.name)
@@ -66,7 +66,8 @@ async function getGames(req, res) {
             function nextData() {
                 const resultsGamesNext = responseNext.data.results.slice(0, 15)
                     for (let data of resultsGamesNext) {
-                        gamesData.push({
+                        gamesAllData.push({
+                        id: data.id,
                         name: data.name,
                         img: data.background_image,
                         genre: data.genres.map(obj => obj.name)
@@ -77,7 +78,8 @@ async function getGames(req, res) {
             function nextData10() {
                 const resultsGamesNext10 = responseNext.data.results.slice(0, 10)
                     for (let data of resultsGamesNext10) {
-                        gamesData.push({
+                        gamesAllData.push({
+                        id: data.id,
                         name: data.name,
                         img: data.background_image,
                         genre: data.genres.map(obj => obj.name)
@@ -92,8 +94,7 @@ async function getGames(req, res) {
             nextData();
             nextData10();
 
-            await Videogame.findAll({include: Genre})
-            return res.json(gamesData)
+            return res.json(gamesAllData)
         }
          catch (error) {
             console.log(error);
@@ -105,8 +106,3 @@ async function getGames(req, res) {
 module.exports = {
     getGames
 }
-
-module.exports = {
-    getGames
-}
-
