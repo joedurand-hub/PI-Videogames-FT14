@@ -20,10 +20,10 @@ async function postGames(req, res) {
 				rating: rating,
 				platforms: platforms,
 				description: description,
+                genres: genres
 			});
-            genres.forEach(async (GenreGame) => {
+            [...genres].forEach(async (GenreGame) => {
                 let genresVideogame = await Genre.findOne({ where: { name: GenreGame } })
-                console.log(genresVideogame)
                 await gameCreate.addGenre(genresVideogame)
             })
             res.json(gameCreate)
