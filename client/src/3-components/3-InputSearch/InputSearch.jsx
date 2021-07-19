@@ -23,7 +23,12 @@ export function Search() {
     };
     const myVideogames = useSelector(dataStore => dataStore.searchGames)
     {myVideogames?.map((videogame) => {
-        console.log(videogame.name) // funciona
+        console.log(videogame) // funciona
+        return (
+            <React.Fragment>
+                <Card key={videogame.id} name={videogame.name} img={videogame.img} genre={videogame.genre}/>
+            </React.Fragment>
+        )
     })}
     return (
         <div>
