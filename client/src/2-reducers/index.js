@@ -1,5 +1,4 @@
-// import {action} from '../1-actions/index'
-
+import { SEARCH_VIDEOGAME } from '../1-actions/index'
 const initialState = { 
     searchGames : [],
     gameDetail : {},
@@ -10,10 +9,10 @@ const initialState = {
 
 function rootReducer(state = initialState, action) {
     switch(action.type) {
-        case "SEARCH_VIDEOGAME":
-            return {
-                ...state, searchGames: action.payload
-            }
+        case SEARCH_VIDEOGAME:
+            return { ...state, searchGames: action.payload }
+        default: 
+            return state;
     }
 }
 

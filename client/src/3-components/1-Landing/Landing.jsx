@@ -7,12 +7,15 @@ import { Link } from "react-router-dom";
 
 function LandingPage() {
     return (
-  <div className={Landing}>
+  <div className="Landing">
+      <div className="info">
       <h1>Henry Videogames</h1>
       <p>Video game information application for users of all ages.</p>
+      <hr />
       <Link to={'/home'}>
-        <button>Start</button>
+        <button>HOME</button>
       </Link>
+      </div>
 
     </div>
   )
