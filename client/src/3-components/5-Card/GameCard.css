@@ -1,0 +1,24 @@
+.GameCard {
+    border: 1px solid rgba(0, 0, 0, 0.253);
+    width: 18%;
+    height: 30%;
+}
+.GameCard img {
+    margin-left: 5px;
+    margin-right: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.253);
+    width: 95%;
+    height: 50%;
+}
+.nameCard h3 {
+    border-top: 5px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+}
+.genre {
+    border-top: 5px;
+    border-bottom: 5px;
+    background-color: rgb(156, 156, 156);
+    word-spacing: 7px;
+}

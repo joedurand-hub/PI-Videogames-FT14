@@ -1,0 +1,14 @@
+.ContainerSelect {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.ContainerSelect .Select {
+    border-radius: 15px;
+    margin: 20px;
+    width: 15%;
+    background: rgba(245, 245, 245, 0.616);
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
