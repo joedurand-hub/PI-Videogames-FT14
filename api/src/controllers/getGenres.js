@@ -14,11 +14,15 @@ const {API_KEY} = process.env;
 async function getGenres(req, res) {
     try {
         const response = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
-        const genreGames = response.data.results.map(element => {
-            Genre.create({name: element.name})
-            return element.name;
+        const genreGames = response.data.results.forEach(element => {
+            Genre.findOrCreate(
+                {where: {name: element.name}
+              }
+            )
+            
            });
-         return res.json(genreGames);
+           const genresInDB = await Genre.findAll()
+         return res.json(genresInDB);
 
     } catch (error) {
         console.log(error);

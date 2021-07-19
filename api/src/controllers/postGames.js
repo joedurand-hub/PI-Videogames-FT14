@@ -9,18 +9,9 @@ const { Videogame, Genre } = require('../db');
 
 async function postGames(req, res) {
     try {
-        const {name, img, releaseDate, rating, platforms, description, genre} = req.body;
-        
-       let gameBody = await Videogame.findOne({
-            where: {
-                name: name, 
-            },
-            order: [ [ 'createdAt', 'DESC' ]],
-        })
-
-        if(gameBody) {
-            return res.json(gameBody)
-        } else {
+        const {name, img, releaseDate, rating, platforms, description, genres} = req.body;
+        console.log(req.body)
+       
            let gameCreate = await Videogame.create({
 				id: uuidv4(),
 				name: name,
@@ -29,18 +20,14 @@ async function postGames(req, res) {
 				rating: rating,
 				platforms: platforms,
 				description: description,
-                genre: genre,
 			});
-            [...genre].forEach(async (genre) => {
-                let genreVideogame = await Genre.findOne({
-                    where: {
-                        name: genre
-                    }
-                })
-                await gameCreate.addGenre(genreVideogame);
+            genres.forEach(async (GenreGame) => {
+                let genresVideogame = await Genre.findOne({ where: { name: GenreGame } })
+                console.log(genresVideogame)
+                await gameCreate.addGenre(genresVideogame)
             })
             res.json(gameCreate)
-          }
+          
         } catch (error) {
         console.log(error);
         res.status(500).json({error: 'La solicitud para crear un nuevo Videojuego falló'})
