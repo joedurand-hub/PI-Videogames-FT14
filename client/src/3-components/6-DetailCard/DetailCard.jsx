@@ -1,30 +1,38 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { VideogameByID } from '../../1-actions/index';
 import Nav from '../4-Nav/Nav'
 import './DetailCard.css'
 
-export function VideogameDetailById() {
-
+export function VideogameDetailById(props) {
     const videogame = useSelector((dataStore) => dataStore.gameDetailById)
 
-    console.log(videogame)
-
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(VideogameByID(props.match.params.id));
+    }, [dispatch]);
+    
+    
         return (
         <div>
             <Nav/>    
-            <div className="GameCard">
-                <h2>{videogame.name}</h2>
-                <img src={videogame.img} alt="" />
-                <h3>{videogame.releaseDate}</h3>
-                <h3>{videogame.rating}</h3>
-                <h4>{videogame.platforms}</h4>
+            <div className="GameCard" >
+            <h2> {videogame.name} </h2>
+                <img src= {videogame.img} alt="" />
+                <h3>Fecha de lanzamiento: {videogame.releaseDate} </h3>
+                <h3>Rating: {videogame.rating} </h3>
+                <strong>Plataformas:</strong>
+                <h4> {videogame.platforms} </h4>
+
                 <strong>Description:</strong>
                 <p>{videogame.description}</p>
-                <h4>Genres:
-                {videogame.genre.map((item, i) => {
-                    return <li key={i}> {item} </li> 
-                })}
-                </h4>
+                {videogame.genre ? videogame.genre.map((element) => (
+                    <h4> {element}</h4> 
+                )) : videogame.genres.map((e) => (
+                    {e}
+                ))
+                }
             </div>
         </div>
         )

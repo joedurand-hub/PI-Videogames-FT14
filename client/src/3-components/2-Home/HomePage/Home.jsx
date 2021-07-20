@@ -1,28 +1,38 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import Card from '../../5-Card/GameCard'
 import { useDispatch, useSelector } from 'react-redux';
+import { SearchForGamesByName } from '../../../1-actions/index'
+import Paginate from '../Paginate/paginate'
+import Card from '../../5-Card/GameCard'
 import Nav from '../../4-Nav/Nav.jsx';
 import FilterGames from '../FilterGames/FilterGames';
+
 // Tiene el paginado de las Cards
-// [ ] Input de búsqueda para encontrar videojuegos por nombre
-// [ ] Área donde se verá el listado de videojuegos. Deberá mostrar su:
-// Imagen
-// Nombre
-// Géneros
-// [ ] Paginado para ir buscando y mostrando los siguientes videojuegos
+//  Botones/Opciones para filtrar por género y por videojuego existente o agregado por nosotros
+//  Botones/Opciones para ordenar tanto ascendentemente como descendentemente los videojuegos por orden alfabético y por rating
 
 function Home() {
   const dispatch = useDispatch();
+  const [pages, setPages] = useState(0)
   const [order, setOrder] = useState('ASC');
   const [filter, setFilter] = useState('');
+  
+  useEffect(() => {
+    dispatch(SearchForGamesByName(pages, order, filter))
+  }, [dispatch, pages, order, filter]);
+  
   const videogame = useSelector((dataStore) => dataStore.searchVideogames)
+  
+  const handleClick = (e) => { // Resolver click (el evento)
+    e.preventDefault();
+    dispatch(SearchForGamesByName(pages, order, filter))
+};
 
   return (
       <div>
         <Nav/>
         <FilterGames/>
+
         <div className="container">
           {videogame.map(videogame => {
               console.log(videogame)
@@ -37,67 +47,40 @@ function Home() {
   
   export default Home;
 
-//   import React from 'react';
-// import './Home.css';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { useEffect } from "react";
-// import { getGenre, getAllGames, searchQueryGames} from '../../Redux/Actions/actions';
-// import { Link } from 'react-router-dom';
 
-// import Order from '../Order/Order'
-// import GameCard from "./GameCard/GameCard";
-// import SearchBar from "../SearchBar/SearchBar";
-// import { useState } from 'react';
-// import Pagination from '../Home/Pagination';
-// import Filter from '../Filter/Filter';
+//   <Paginate
+//   videogamesPerPage={videogamesPerPage}
+//   totalVideogames={allVideogames.length}
+//   paginate={paginate}
+// />
 
-// function Home() {
-
-//   const dispatch = useDispatch();
-//   const getGames = useSelector((state) => state.getGames);
-//   const searchGames = useSelector((state) => state.searchGames);
-   
-  
-//   const [name, setName] = useState("");
-//   const [search, setSearch] = useState(false);
-//   //const [displayResults, setDisplayResults] = useState(getPokes)
-//   let allGames;
-  
-//   async function searchVideogame(name) {
-//     await dispatch(searchQueryGames(name))        
+  // Paginacion
+//   function paginate(e, num) {
+//     e.preventDefault();
+//     setPage(num);
 //   }
 
-//   useEffect(() =>{
-//     if(search) {
-//       searchVideogame(name)      
-//     } else {
-//       dispatch(getGenre()) 
-//       dispatch(getAllGames());
-//     } 
-//   },[search]) 
-  
-  
-  
-//   return(
+//   const [page, setPage] = useState(1);
+//   const [videogamesPerPage] = useState(15);
 
-//   <div className='Home' >
-//     <SearchBar setSearch={setSearch} setName={setName} ></SearchBar>   
-    
-//     <ul>
-//     <h2>Look for your favourite Videogame</h2>
-//     <Order ></Order>
-//     <Filter ></Filter>
-//       { 
-//         search ? 
-//           <Link to={`/gameDetail/${searchGames.id}`} >          
-//             <GameCard game = {searchGames} key = {searchGames.id} /* name = {searchGames.name} */ />        
-//           </Link> 
-//         :      
-//         (getGames.length > 0 ? <Pagination></Pagination> : <h1>Loading ...</h1>)
-//       }
-//     </ul> 
-//   </div>
-//   )
-// }
+//   let lastCardPerPage = page * videogamesPerPage;
+//   let firtsCardPerPage = lastCardPerPage - videogamesPerPage;
+//   let currentPageGames = allVideogames.slice(firtsCardPerPage, lastCardPerPage);
 
-// export default Home;
+//   return (
+//     <div >
+//       <Filter paginate={paginate} />
+//       <div className={style.home}>
+//         <Videogames videogames={currentPageGames} />
+//       </div>
+//       <div>
+//         <Pagination
+//           videogamesPerPage={videogamesPerPage}
+//           totalVideogames={allVideogames.length}
+//           paginate={paginate}
+//         />
+//       </div>  
+//     </div>
+//   );
+// };
+  

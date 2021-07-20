@@ -1,17 +1,9 @@
 import React from 'react';
 import { useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import { VideogameByID } from '../../1-actions/index';
-import { useDispatch, useSelector } from 'react-redux';
-import DetailCard from '../6-DetailCard/DetailCard'
 import './GameCard.css'
 
 export function GameCard({videogame}) {
-    const dispatch = useDispatch();
-    
-    useEffect(() => {
-        dispatch(VideogameByID(videogame.id));
-    }, [dispatch]);
 
     return (
             <div className="GameCard">
@@ -19,13 +11,15 @@ export function GameCard({videogame}) {
                 <img src={videogame.img} alt="Image not found" />
                 <p>Géneros:</p>
                 <h4 className="genres">
-                {videogame.genre.map((element, i) => {
-                    return  <h4 key={i}> {element}</h4> 
-                })} 
+                {videogame.genre ? videogame.genre.map((element) => (
+                    <h4> {element}</h4> 
+                )) : videogame.genres.map((e) => (
+                    {e}
+                ))
+                }
                 </h4>
-                <Link to={`/videogame/${videogame.id}`}> 
+                <Link to={`/videogame/${videogame.id}`} key={videogame.id}> 
                 <button>Ver más</button>
-                    <DetailCard name={videogame.name} image={videogame.img}/>
                 </Link>
             </div>
     )
