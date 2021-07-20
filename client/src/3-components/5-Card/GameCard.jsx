@@ -1,9 +1,17 @@
 import React from 'react';
+import { useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
+import { VideogameByID } from '../../1-actions/index';
+import { useDispatch, useSelector } from 'react-redux';
+import DetailCard from '../6-DetailCard/DetailCard'
 import './GameCard.css'
-import Nav from '../4-Nav/Nav'
 
 export function GameCard({videogame}) {
+    const dispatch = useDispatch();
+    
+    useEffect(() => {
+        dispatch(VideogameByID(videogame.id));
+    }, [dispatch]);
 
     return (
             <div className="GameCard">
@@ -12,10 +20,13 @@ export function GameCard({videogame}) {
                 <p>Géneros:</p>
                 <h4 className="genres">
                 {videogame.genre.map((element, i) => {
-                    return  <h4> {element}</h4> 
+                    return  <h4 key={i}> {element}</h4> 
                 })} 
                 </h4>
-                <Link to={`/videogame/${videogame.id}`}> <button className=''>Ver más</button></Link>
+                <Link to={`/videogame/${videogame.id}`}> 
+                <button>Ver más</button>
+                    <DetailCard name={videogame.name} image={videogame.img}/>
+                </Link>
             </div>
     )
 };

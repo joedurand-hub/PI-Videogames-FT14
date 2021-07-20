@@ -1,16 +1,41 @@
-import { SEARCH_VIDEOGAME } from '../1-actions/index'
+import { 
+    VIDEOGAME_DETAIL_FOR_ID_CARD, 
+    SEARCH_VIDEOGAME, 
+    ADD_NEW_VIDEOGAME, 
+    GET_GENRES, 
+    FILTER_BY_GENRE, 
+    ORDER_BY_CREATOR, 
+    ORDER_ASC_FOR_NAME,
+    ORDER_ASC_FOR_RATING,
+    ORDER_DESC_FOR_NAME,
+    ORDER_DESC_FOR_RATING
+} from '../1-actions/index'
+
 const initialState = { 
-    searchGames : [],
-    gameDetail : {},
-    newVideogame: [],  
+    searchVideogames : [],
+    gameDetailById : [],
+    newVideogame: null,  
+    genres: [],
+    order: "Select",
+    filter: "All"
 }
-
-
 
 function rootReducer(state = initialState, action) {
     switch(action.type) {
+        case VIDEOGAME_DETAIL_FOR_ID_CARD:
+            return { ...state, gameDetailById: action.payload }
+
         case SEARCH_VIDEOGAME:
-            return { ...state, searchGames: action.payload }
+            return { ...state, searchVideogames: action.payload }
+
+        case ADD_NEW_VIDEOGAME:
+            return { ...state, newVideogame: action.payload }
+
+        case GET_GENRES:
+            return { ...state, genres: action.payload }
+            
+        case FILTER_BY_GENRE:
+            return {  ...state, filterByGenre: action.payload };    
         default: 
             return state;
     }

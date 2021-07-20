@@ -17,7 +17,7 @@ function Home() {
   const dispatch = useDispatch();
   const [order, setOrder] = useState('ASC');
   const [filter, setFilter] = useState('');
-  const videogame = useSelector((dataStore) => dataStore.searchGames)
+  const videogame = useSelector((dataStore) => dataStore.searchVideogames)
 
   return (
       <div>
