@@ -12,75 +12,30 @@ import FilterGames from '../FilterGames/FilterGames';
 //  Botones/Opciones para ordenar tanto ascendentemente como descendentemente los videojuegos por orden alfabético y por rating
 
 function Home() {
-  const dispatch = useDispatch();
-  const [pages, setPages] = useState(0)
+
+
   const [order, setOrder] = useState('ASC');
   const [filter, setFilter] = useState('');
   
-  useEffect(() => {
-    dispatch(SearchForGamesByName(pages, order, filter))
-  }, [dispatch, pages, order, filter]);
-  
-  const videogame = useSelector((dataStore) => dataStore.searchVideogames)
-  
-  const handleClick = (e) => { // Resolver click (el evento)
-    e.preventDefault();
-    dispatch(SearchForGamesByName(pages, order, filter))
-};
 
+  const videogame = useSelector((dataStore) => dataStore.searchVideogames)
+  console.log(videogame)
   return (
       <div>
         <Nav/>
         <FilterGames/>
-
         <div className="container">
-          {videogame.map(videogame => {
-              console.log(videogame)
-              return (
-              <Card videogame={videogame} key={videogame.id} name={videogame.name} img={videogame.img} genre={videogame.genre}/>
-                  )
-            })}
+        <Paginate
+            videogame={videogame}
+            RenderComponent={Card}
+            title="Videogames"
+            pageLimit={7}
+            dataLimit={15}
+          />
           </div>
+          
       </div>
     )
   };
   
   export default Home;
-
-
-//   <Paginate
-//   videogamesPerPage={videogamesPerPage}
-//   totalVideogames={allVideogames.length}
-//   paginate={paginate}
-// />
-
-  // Paginacion
-//   function paginate(e, num) {
-//     e.preventDefault();
-//     setPage(num);
-//   }
-
-//   const [page, setPage] = useState(1);
-//   const [videogamesPerPage] = useState(15);
-
-//   let lastCardPerPage = page * videogamesPerPage;
-//   let firtsCardPerPage = lastCardPerPage - videogamesPerPage;
-//   let currentPageGames = allVideogames.slice(firtsCardPerPage, lastCardPerPage);
-
-//   return (
-//     <div >
-//       <Filter paginate={paginate} />
-//       <div className={style.home}>
-//         <Videogames videogames={currentPageGames} />
-//       </div>
-//       <div>
-//         <Pagination
-//           videogamesPerPage={videogamesPerPage}
-//           totalVideogames={allVideogames.length}
-//           paginate={paginate}
-//         />
-//       </div>  
-//     </div>
-//   );
-// };
-  

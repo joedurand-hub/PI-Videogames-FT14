@@ -1,9 +1,12 @@
 import React from 'react';
-import { useState, useEffect} from 'react';
+import { useDispatch } from 'react-redux'
+import { VideogameByID } from '../../1-actions/index';
 import {Link} from 'react-router-dom';
 import './GameCard.css'
 
-export function GameCard({videogame}) {
+export function GameCard({videogame}) { // Renderizo los datos en cada Card
+  console.log("Detail:", videogame)
+  const dispatch = useDispatch();
 
     return (
             <div className="GameCard">
@@ -18,10 +21,10 @@ export function GameCard({videogame}) {
                 ))
                 }
                 </h4>
-                <Link to={`/videogame/${videogame.id}`} key={videogame.id}> 
-                <button>Ver más</button>
+                <Link to={`/videogame/`} key={videogame.id}> 
+                <button onClick={() => dispatch(VideogameByID(videogame.id))}>Ver más</button>
                 </Link>
-            </div>
+           </div>
     )
 };
 
