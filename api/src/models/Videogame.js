@@ -26,7 +26,6 @@ module.exports = (sequelize) => {
     },
     img: { //listo
       type: DataTypes.STRING,
-      allowNull: false,
     },
     platforms: { // listo
       type: DataTypes.ARRAY(DataTypes.STRING),

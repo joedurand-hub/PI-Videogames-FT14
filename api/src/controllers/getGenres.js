@@ -14,15 +14,19 @@ const {API_KEY} = process.env;
 async function getGenres(req, res) {
     try {
         const response = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
+
         response.data.results.forEach(element => {
             Genre.findOrCreate(
                 {where: {name: element.name}
               }
             )
-            
-           });
+           })
+
+           let genreDb = await Genre.findAll()
            console.log("Géneros cargados")
-    } catch (error) {
+           return res.json(genreDb)
+
+        } catch (error) {
         console.log(error);
         res.status(500).json({error: 'No se han podido traer los géneros de los videojuegos'})
     }
