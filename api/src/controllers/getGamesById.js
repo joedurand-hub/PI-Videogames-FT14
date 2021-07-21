@@ -26,6 +26,7 @@ async function getGamesById(req, res) {
         } else {
             const response = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)
             const gamesData = {
+                id: response.data.id,
                 name: response.data.name,
                 img: response.data.background_image,
                 releaseDate: response.data.released,

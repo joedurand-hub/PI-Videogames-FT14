@@ -25,7 +25,7 @@ async function getGames(req, res) {
     const responseNames = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&search=${name}`)
     const resNames = responseNames.data.results
 
-        if(name) {
+        if(name) { 
             try { // Trae de la DB y de API los primeros 15 que coincidan por query.name
                 let gamesNamesData = await Videogame.findAll({
                     where: {
