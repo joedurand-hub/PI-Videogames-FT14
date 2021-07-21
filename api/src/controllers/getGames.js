@@ -20,7 +20,7 @@ async function getGames(req, res) {
     const { name } = req.query;
     const gamesData = [];
     const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)
-    const resultsGames = response.data.results.slice(0, 15)
+    const resultsGames = response.data.results.slice(0, 20)
     
     const responseNames = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&search=${name}`)
     const resNames = responseNames.data.results
@@ -64,7 +64,7 @@ async function getGames(req, res) {
             }
             const responseNext = await axios.get(response.data.next)
             function nextData() {
-                const resultsGamesNext = responseNext.data.results.slice(0, 15)
+                const resultsGamesNext = responseNext.data.results.slice(0, 20)
                     for (let data of resultsGamesNext) {
                         gamesAllData.push({
                         id: data.id,
@@ -75,8 +75,32 @@ async function getGames(req, res) {
                     })
                 }
             }
-            function nextData10() {
-                const resultsGamesNext10 = responseNext.data.results.slice(0, 10)
+            function nextData15() {
+                const resultsGamesNext10 = responseNext.data.results.slice(0, 20)
+                    for (let data of resultsGamesNext10) {
+                        gamesAllData.push({
+                        id: data.id,
+                        name: data.name,
+                        img: data.background_image,
+                        genre: data.genres.map(obj => obj.name)
+    
+                    })
+                }
+            }
+            function nextData2_15() {
+                const resultsGamesNext10 = responseNext.data.results.slice(0, 20)
+                    for (let data of resultsGamesNext10) {
+                        gamesAllData.push({
+                        id: data.id,
+                        name: data.name,
+                        img: data.background_image,
+                        genre: data.genres.map(obj => obj.name)
+    
+                    })
+                }
+            }
+            function nextData3_15() {
+                const resultsGamesNext10 = responseNext.data.results.slice(0, 20)
                     for (let data of resultsGamesNext10) {
                         gamesAllData.push({
                         id: data.id,
@@ -88,11 +112,9 @@ async function getGames(req, res) {
                 }
             }
             nextData();
-            nextData();
-            nextData();
-            nextData();
-            nextData();
-            nextData10();
+            nextData15();
+            nextData2_15();
+            nextData3_15();
 
             return res.json(gamesAllData)
         }
