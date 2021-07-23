@@ -1,11 +1,11 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import Card from '../../5-Card/GameCard'
+import button from './Paginate.css'
 // Tiene el paginado de las Cards
 
-export function Paginate({ videogame, RenderComponent, title, dataLimit }) {
-    console.log("Longitud de la data en", videogame.length)
+export function Paginate({ videogame, title, dataLimit }) {
+    console.log("Length de data a paginar", videogame.length)
     
     const [pages] = useState(Math.round(videogame.length / dataLimit));
 
@@ -27,9 +27,9 @@ export function Paginate({ videogame, RenderComponent, title, dataLimit }) {
     return (
         <div className="containerPagination">
         <h1>{title}</h1>
-            <div >
-                <button onClick={goToPreviousPage}>  Anterior </button>    
-                <button onClick={goToNextPage}>  Siguiente </button>
+            <div className="button">
+                <button  onClick={goToPreviousPage}> Previous </button>    
+                <button  onClick={goToNextPage}> Next </button>
             </div>    
         <div className="pagination">
           {getPaginatedData().map((game, id) => ( 

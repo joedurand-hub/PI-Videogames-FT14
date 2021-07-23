@@ -1,0 +1,32 @@
+.container .containerPagination .button button {
+    text-decoration: none;
+    width: 140px;
+    height: 50px;
+    background: #00b4db; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+      to right,
+      #0083b0,
+      #00b4db
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+      to right,
+      #0083b0,
+      #00b4db
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #ffffff;
+    border: none;
+    padding: 0 8px;
+    font-size: 20px;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold 300;
+    margin: 10px;
+}
+
+.container .containerPagination .button button:hover {
+  border: 1px solid rgb(167, 167, 167);
+    background: #f3f3f3f5;
+    color: black;
+    box-shadow: 1px 4px 19px 7px rgba(212, 212, 212, 0.747);
+    cursor: pointer;
+    transition: 1s;
+}

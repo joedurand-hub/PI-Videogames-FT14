@@ -5,7 +5,8 @@ import {Link} from 'react-router-dom';
 import './GameCard.css'
 
 export function GameCard({videogame}) { // Renderizo los datos en cada Card
-  console.log("Detail:", videogame)
+    
+  console.log("gameCard:", videogame)
   const dispatch = useDispatch();
 
     return (
@@ -17,9 +18,10 @@ export function GameCard({videogame}) { // Renderizo los datos en cada Card
                 {videogame.genre ? videogame.genre.map((element) => (
                     <h4> {element}</h4> 
                 )) : videogame.genres.map((e) => (
-                    {e}
-                ))
+                    <h4> {e.name} </h4>
+                    ))
                 }
+                
                 </h4>
                 <Link to={`/videogame/`} key={videogame.id}> 
                 <button onClick={() => dispatch(VideogameByID(videogame.id))}>Ver más</button>

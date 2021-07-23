@@ -14,22 +14,34 @@ export function VideogameDetailById() {
             <div className="GameCard" >
             <h2> {videogame.name} </h2>
                 <img src= {videogame.img} alt="" />
-                <h3>Fecha de lanzamiento: {videogame.releaseDate} </h3>
+                <h3>Release Date: {videogame.releaseDate} </h3>
                 <h3>Rating: {videogame.rating} </h3>
                 
-                <strong>Plataformas:</strong>
-                <h4> {videogame.platforms} </h4>
+                <strong>Platforms:</strong>
+                    <div>
+                        <h4> {videogame.platforms} </h4>
+                    </div>
 
                 <strong>Description:</strong>
-                <p>{videogame.description}</p>
+                <div className="description">
+                    <p> {videogame.description}</p>
+                </div>
                
-                <strong>Géneros:</strong>
-                {videogame.genre ? videogame.genre?.map((element, i) => (
-                    <h4 key={i}> {element} </h4> 
-                )) : videogame.genres?.map((e, i) => (
-                    <h4 key={i}> {e} </h4>
-                ))
+                <strong>Genres:</strong>
+                <div className="DetailGenres">
+                {   
+                    videogame.genre?.map((element, i) => (
+                        <h4 key={i}> {element} </h4> 
+                    ))
                 }
+                {console.log("genre:", videogame.genre)}
+                {
+                    videogame.genres?.map((e, i) => (
+                        <h4 key={i}> {e.name} </h4>
+                    ))
+                }
+                {console.log("genres:", videogame.genres)}
+                </div>
             </div>
         </div>
     )

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import InputSearch from './InputSearch.css';
 import { SearchForGamesByName } from '../../1-actions/index';
+import './InputSearch.css';
 
 export function Search() {
     const dispatch = useDispatch();
@@ -22,10 +22,10 @@ export function Search() {
 
         <div>
         <form>
-            <input type="search" placeholder="Insert a name" className={InputSearch}
+            <input type="search" placeholder="Insert a name" className="InputSearch"
             onChange={(e) => handleInputChange(e)}></input>
-            <button type="submit" value="Buscar"
-            onClick={(e) => handleClick(e)}> Buscar </button>
+            <button className="buttonSearch" type="submit" value="Buscar"
+            onClick={(e) => handleClick(e)}> Search </button>
         </form>
         </div>
     )

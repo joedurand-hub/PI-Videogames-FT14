@@ -1,25 +1,29 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SearchForGamesByName } from '../../../1-actions/index'
 import Paginate from '../Paginate/paginate'
 import Card from '../../5-Card/GameCard'
 import Nav from '../../4-Nav/Nav.jsx';
 import FilterGames from '../FilterGames/FilterGames';
 
-// Tiene el paginado de las Cards
-//  Botones/Opciones para filtrar por género y por videojuego existente o agregado por nosotros
-//  Botones/Opciones para ordenar tanto ascendentemente como descendentemente los videojuegos por orden alfabético y por rating
-
 function Home() {
+  const dispatch = useDispatch();
+
+  const filterAll = useSelector((state) => state.filterAll);
+  const filteredVideogames = useSelector((state) => state.filteredVideogames);
+
+  const videogame = useSelector((dataStore) => dataStore.searchVideogames)
 
 
   const [order, setOrder] = useState('ASC');
   const [filter, setFilter] = useState('');
   
+  let allVideogames;
+  if(filterAll === "All") {
+    allVideogames = filteredVideogames
+  }
 
-  const videogame = useSelector((dataStore) => dataStore.searchVideogames)
-  console.log(videogame)
+  console.log("Listado de videogames", videogame)
   return (
       <div>
         <Nav/>

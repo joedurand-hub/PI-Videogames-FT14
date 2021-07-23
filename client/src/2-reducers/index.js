@@ -1,23 +1,24 @@
 import { 
-    VIDEOGAME_DETAIL_FOR_ID_CARD, 
-    SEARCH_VIDEOGAME, 
-    ADD_NEW_VIDEOGAME, 
-    GET_GENRES, 
-    FILTER_BY_GENRE, 
-    ORDER_BY_CREATOR, 
-    ORDER_ASC_FOR_NAME,
-    ORDER_ASC_FOR_RATING,
-    ORDER_DESC_FOR_NAME,
-    ORDER_DESC_FOR_RATING
+    VIDEOGAME_DETAIL_FOR_ID_CARD,   // Listo
+    SEARCH_VIDEOGAME,               // Listo
+    ADD_NEW_VIDEOGAME,              // Listo
+    GET_GENRES,                     // Listo
+    RESET,              
+    FILTER_GENRE,                   // 
+    OPTIONS_DATA_DB_API_RATING_ALPH,  // 
+
 } from '../1-actions/index'
 
 const initialState = { 
-    searchVideogames : [],
-    gameDetailById : [],
-    newVideogame: null,  
-    genres: [],
-    order: "Select",
-    filter: "All"
+    searchVideogames : [], // Usado
+    gameDetailById : [],   // Usado
+    originalGames: [],     // Usado
+    newVideogame: null,    // Usado
+    getGenres: [],         // Usado
+    videogames: [],
+    filteredVideogames: [],
+    filterAll: "All",
+    orderSelect: "Select",
 }
 
 function rootReducer(state = initialState, action) {
@@ -26,16 +27,44 @@ function rootReducer(state = initialState, action) {
             return { ...state, gameDetailById: action.payload }
 
         case SEARCH_VIDEOGAME:
-            return { ...state, searchVideogames: action.payload }
+            return { ...state, searchVideogames: action.payload, originalGames: action.payload }
 
         case ADD_NEW_VIDEOGAME:
             return { ...state, newVideogame: action.payload }
 
         case GET_GENRES:
-            return { ...state, genres: action.payload }
+            return { ...state, getGenres: action.payload }
             
-        case FILTER_BY_GENRE:
-            return {  ...state, filterByGenre: action.payload };    
+        case FILTER_GENRE:
+            return { ...state,
+              filteredVideogames: action.payload.videogameGenre,
+                  filterAll: action.payload.genre,
+                };
+        
+              
+        case OPTIONS_DATA_DB_API_RATING_ALPH: 
+            if(action.payload === 'Null') {
+            return {
+                  ...state,
+                  searchVideogames: state.originalGames
+                } 
+              };   
+              let filterMine = []
+              if(action.payload === 'DB') {
+                filterMine = state.originalGames.filter(game => game.mine === true);
+                
+              } else {
+                filterMine = state.originalGames.filter(game => game.mine === false);
+              }
+              
+              return {
+                ...state,
+                searchVideogames: filterMine,
+              }
+
+        case RESET:
+            return { ...state, searchVideogames: [], orderSelect: "Select", filterAll: "All" }
+        
         default: 
             return state;
     }
@@ -45,28 +74,3 @@ function rootReducer(state = initialState, action) {
 export default rootReducer;
 
 
-
-// import {GET_RAZA_DETAIL, GET_RAZA_ALL, GET_RAZA, GET_TEMPERAMENTO, SORT_RAZA} from '../actions/index'
-
-// function rootReducer(state = initialState, action){
-
-//     if(action.type === GET_RAZA_ALL) {
-//         return {
-//             ...state,
-//             razas : action.payload
-//         }
-//     }
-
-//     if(action.type === GET_RAZA_DETAIL) {
-//         return {
-//             ...state,
-//             razasDetail : action.payload
-//         }
-//     }
-
-//     if(action.type === GET_RAZA) {
-//         return {
-//             ...state,
-//             razas : action.payload
-//         }
-//     }

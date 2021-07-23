@@ -1,14 +1,21 @@
-.ContainerSelect {
+.Divselect {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.ContainerSelect .Select {
-    border-radius: 15px;
-    margin: 20px;
-    width: 15%;
+.DivSelect #select {
+    margin: 15px;
+    width: 130px;
+    border-radius: 5px;
+    height: 30px;
+    font-size: 16px;
     background: rgba(245, 245, 245, 0.616);
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    font-weight: 600;
+}
+
+.DivSelect #select option {
+ font-weight: 600;
 }

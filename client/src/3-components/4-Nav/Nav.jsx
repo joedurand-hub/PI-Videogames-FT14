@@ -11,15 +11,15 @@ import './nav.css';
 export function Nav() {
   return (
 <div>
-    <nav >  
-    <NavLink to="/home">
-      <div className="logo">Home</div>
+    <nav className="Nav">  
+    <NavLink to={'/home'}>
+      <button className="home"> HOME </button>
     </NavLink>
     
     <InputSearch/>
 
     <NavLink to={'/create'}>
-      <button>Create Videogame</button>
+      <button className="buttonCreate"> CREATE </button>
     </NavLink>
     
     </nav>

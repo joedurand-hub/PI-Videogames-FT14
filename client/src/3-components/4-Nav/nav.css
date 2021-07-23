@@ -1,6 +1,84 @@
-nav {
-    background: rgba(238, 95, 95, 0.719);
+.Nav {
+    background: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    z-index: 999;
+    box-shadow: 0 3px 5px 0 rgba(0,0,0,.2);
+}
+
+
+.Nav .home {
+    border: none;
+    text-decoration: none !important;
+    width: 120px;
+    height: 40px;
+    margin: 20px;
+    font-weight: 600;
+    padding: 10px 30px;
+    font-size: 20px;
+    background-color: #ffffff;
+    color: #0a1e2c;
+}
+
+.Nav .home:hover {
+    border: none;
+    text-decoration: none !important;
+    width: 120px;
+    transition: 1s;
+    height: 40px;
+    margin: 20px;
+    cursor: pointer;
+    background: #00b4db; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+      to right,
+      #0083b0,
+      #00b4db
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+      to right,
+      #0083b0,
+      #00b4db
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #ffffff;
+    box-shadow: 1px 3px 12px 5px rgba(212, 212, 212, 0.747);
+}
+
+.Nav  .buttonCreate {
+  text-decoration: none !important;
     display: flex;
     justify-content: center;
-    flex-direction: row;
+    align-items: center;
+    border: none;
+    width: 120px;
+    height: 40px;
+    margin: 20px;
+    font-weight: 600;
+    padding: 10px 30px;
+    font-size: 20px;
+    background-color: #ffffff;
+    color: #0a1e2c;
+    transition: 1s;
+  }
+
+.Nav  .buttonCreate:hover {
+    text-decoration: none !important;
+    width: 120px;
+    height: 40px;
+    margin: 20px;
+    cursor: pointer;
+    padding: 10px 30px;
+    background: #00b4db;
+    background: -webkit-linear-gradient(
+      to right,
+      #0083b0,
+      #00b4db
+    );
+    background: linear-gradient(
+      to right,
+      #0083b0,
+      #00b4db
+    );
+    color: #ffffff;
+    box-shadow: 1px 3px 12px 5px rgba(212, 212, 212, 0.747);
 }
