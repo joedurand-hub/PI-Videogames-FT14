@@ -23,7 +23,7 @@ async function getGenres(req, res) {
            })
 
            let genreDb = await Genre.findAll()
-           console.log("Géneros cargados", genreDb)
+           console.log("Géneros cargados")
            return res.json(genreDb)
 
         } catch (error) {
