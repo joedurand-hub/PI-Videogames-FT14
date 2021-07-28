@@ -28,7 +28,7 @@ async function getGamesById(req, res) {
             const gamesData = {
                 id: response.data.id,
                 name: response.data.name,
-                img: response.data.background_image,
+                img: response.data.background_image_additional,
                 releaseDate: response.data.released,
                 rating: response.data.rating,
                 platforms: response.data.platforms.map(obj => obj.platform.name),
