@@ -9,76 +9,91 @@
 
 
 .Nav .home {
-    border: none;
-    text-decoration: none !important;
-    width: 120px;
-    height: 40px;
-    margin: 20px;
-    font-weight: 600;
-    padding: 10px 30px;
-    font-size: 20px;
-    background-color: #ffffff;
-    color: #0a1e2c;
+  border: none;
+  text-decoration: none !important;
+  width: 120px;
+  height: 40px;
+  margin: 20px;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #00bee9;
+  background: -webkit-linear-gradient(
+    to right,
+    #019ccf,
+    #00bee9
+  ); 
+  background: linear-gradient(
+    to right,
+    #0097c9,
+    #00c0eb
+  ); 
+  color: #ffffff;
 }
 
 .Nav .home:hover {
-    border: none;
-    text-decoration: none !important;
-    width: 120px;
-    transition: 1s;
-    height: 40px;
-    margin: 20px;
-    cursor: pointer;
-    background: #00b4db; /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-      to right,
-      #0083b0,
-      #00b4db
-    ); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(
-      to right,
-      #0083b0,
-      #00b4db
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    color: #ffffff;
-    box-shadow: 1px 3px 12px 5px rgba(212, 212, 212, 0.747);
+  border: none;
+  text-decoration: none !important;
+  box-shadow: 1px 3px 12px 5px rgba(212, 212, 212, 0.747);
+}
+
+.Nav .home:active {
+  font-size: 15px;
+  background: #00abd1; 
+  background: -webkit-linear-gradient(
+    to right,
+    #00749b,
+    #00a1c5
+  );
+  background: linear-gradient(
+    to right,
+    #0083b0,
+    #00a7cc
+  ); 
+  box-shadow: 1px 3px 12px 5px rgba(212, 212, 212, 0.747);
 }
 
 .Nav  .buttonCreate {
+  border: none;
   text-decoration: none !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    width: 120px;
-    height: 40px;
-    margin: 20px;
-    font-weight: 600;
-    padding: 10px 30px;
-    font-size: 20px;
-    background-color: #ffffff;
-    color: #0a1e2c;
-    transition: 1s;
+  width: 120px;
+  height: 40px;
+  margin: 20px;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #00bee9; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #019ccf,
+    #00bee9
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #0097c9,
+    #00c0eb
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: #ffffff;
   }
 
 .Nav  .buttonCreate:hover {
-    text-decoration: none !important;
-    width: 120px;
-    height: 40px;
-    margin: 20px;
-    cursor: pointer;
-    padding: 10px 30px;
-    background: #00b4db;
-    background: -webkit-linear-gradient(
-      to right,
-      #0083b0,
-      #00b4db
-    );
-    background: linear-gradient(
-      to right,
-      #0083b0,
-      #00b4db
-    );
-    color: #ffffff;
-    box-shadow: 1px 3px 12px 5px rgba(212, 212, 212, 0.747);
+  border: none;
+  text-decoration: none !important;
+  box-shadow: 1px 3px 12px 5px rgba(212, 212, 212, 0.747);
+}
+
+.Nav  .buttonCreate:active {
+  font-size: 15px;
+  background: #00abd1; 
+  background: -webkit-linear-gradient(
+    to right,
+    #00749b,
+    #00a1c5
+  );
+  background: linear-gradient(
+    to right,
+    #0083b0,
+    #00a7cc
+  ); 
+  box-shadow: 1px 3px 12px 5px rgba(212, 212, 212, 0.747);
 }

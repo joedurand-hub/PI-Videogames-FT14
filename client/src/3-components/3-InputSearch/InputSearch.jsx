@@ -14,7 +14,7 @@ export function Search() {
         console.log(e.target.value)
     };
     
-    const handleClick = (e) => { // Resolver click (el evento)
+    const handleClick = (e) => { // Resolver click (buscar)
         e.preventDefault();
         dispatch(SearchForGamesByName(name))
     };

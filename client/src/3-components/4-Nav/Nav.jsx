@@ -13,13 +13,13 @@ export function Nav() {
 <div>
     <nav className="Nav">  
     <NavLink to={'/home'}>
-      <button className="home"> HOME </button>
+      <button className="home"> Home </button>
     </NavLink>
     
     <InputSearch/>
 
     <NavLink to={'/create'}>
-      <button className="buttonCreate"> CREATE </button>
+      <button className="buttonCreate"> Create </button>
     </NavLink>
     
     </nav>

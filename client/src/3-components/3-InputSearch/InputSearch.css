@@ -37,5 +37,12 @@
     background: rgb(0, 0, 0);
     border: 1px solid rgb(170, 170, 170);
     box-shadow: 1px 3px 10px 5px rgba(212, 212, 212, 0.747);
-    transition: 500ms;
+  }
+
+  .buttonSearch:active {
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.945);
+    box-shadow: 1px 3px 10px 5px rgba(212, 212, 212, 0.747);
   }

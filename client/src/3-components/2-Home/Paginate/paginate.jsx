@@ -5,7 +5,7 @@ import button from './Paginate.css'
 // Tiene el paginado de las Cards
 
 export function Paginate({ videogame, title, dataLimit }) {
-    console.log("Length de data a paginar", videogame.length)
+    console.log("Length de data a paginar", videogame)
     
     const [pages] = useState(Math.round(videogame.length / dataLimit));
 
@@ -33,10 +33,9 @@ export function Paginate({ videogame, title, dataLimit }) {
             </div>    
         <div className="pagination">
           {getPaginatedData().map((game, id) => ( 
-              <Card key={id} videogame={game} 
-              RenderComponent={Card}
-              title="Videogames"
-              pageLimit={7}
+              <Card 
+              key={id} 
+              videogame={game} 
               dataLimit={15}
               />
           ))}

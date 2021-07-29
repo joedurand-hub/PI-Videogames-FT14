@@ -3,22 +3,17 @@ import {
     SEARCH_VIDEOGAME,               // Listo
     ADD_NEW_VIDEOGAME,              // Listo
     GET_GENRES,                     // Listo
+    FILTER_BY_GENRE,                // 
     RESET,              
-    FILTER_GENRE,                   // 
-    OPTIONS_DATA_DB_API_RATING_ALPH,  // 
 
 } from '../1-actions/index'
 
 const initialState = { 
-    searchVideogames : [], // Usado
-    gameDetailById : [],   // Usado
-    originalGames: [],     // Usado
+    searchVideogames: [], // Usado
+    allVideogames: [],
+    gameDetailById: [],   // Usado
     newVideogame: null,    // Usado
     getGenres: [],         // Usado
-    videogames: [],
-    filteredVideogames: [],
-    filterAll: "All",
-    orderSelect: "Select",
 }
 
 function rootReducer(state = initialState, action) {
@@ -27,7 +22,7 @@ function rootReducer(state = initialState, action) {
             return { ...state, gameDetailById: action.payload }
 
         case SEARCH_VIDEOGAME:
-            return { ...state, searchVideogames: action.payload, originalGames: action.payload }
+            return { ...state, searchVideogames: action.payload, allVideogames: action.payload }
 
         case ADD_NEW_VIDEOGAME:
             return { ...state, newVideogame: action.payload }
@@ -35,35 +30,14 @@ function rootReducer(state = initialState, action) {
         case GET_GENRES:
             return { ...state, getGenres: action.payload }
             
-        case FILTER_GENRE:
-            return { ...state,
-              filteredVideogames: action.payload.videogameGenre,
-                  filterAll: action.payload.genre,
-                };
+        case FILTER_BY_GENRE:
+            const allVideogames = state.allVideogames
+            const genresFiltered = action.payload === 'All' ? allVideogames 
+            : allVideogames.filter(card => (card.genre).includes(action.payload))
+            return { ...state, searchVideogames: genresFiltered }
         
-              
-        case OPTIONS_DATA_DB_API_RATING_ALPH: 
-            if(action.payload === 'Null') {
-            return {
-                  ...state,
-                  searchVideogames: state.originalGames
-                } 
-              };   
-              let filterMine = []
-              if(action.payload === 'DB') {
-                filterMine = state.originalGames.filter(game => game.mine === true);
-                
-              } else {
-                filterMine = state.originalGames.filter(game => game.mine === false);
-              }
-              
-              return {
-                ...state,
-                searchVideogames: filterMine,
-              }
-
         case RESET:
-            return { ...state, searchVideogames: [], orderSelect: "Select", filterAll: "All" }
+            return { ...state, searchVideogames: [] }
         
         default: 
             return state;
@@ -72,5 +46,3 @@ function rootReducer(state = initialState, action) {
 
 
 export default rootReducer;
-
-
