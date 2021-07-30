@@ -30,6 +30,11 @@ module.exports = (sequelize) => {
     platforms: { // listo
       type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
-    }
+    },
+    createdInDb: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+    },
   });
 };
