@@ -39,7 +39,8 @@ async function getGames(req, res) {
                         id: resFilteredNames.id,
                         name: resFilteredNames.name,
                         img: resFilteredNames.background_image,
-                        genre: resFilteredNames.genres.map(obj => obj.name),   
+                        genre: resFilteredNames.genres.map(obj => obj.name),  
+                        rating: resFilteredNames.rating, 
                     }
                     gamesNamesData.push(resFilteredNames)
                 }
@@ -59,7 +60,8 @@ async function getGames(req, res) {
                 id: data.id,
                 name: data.name,
                 img: data.background_image,
-                genre: data.genres.map(obj => obj.name)
+                genre: data.genres.map(obj => obj.name),
+                rating: data.rating,
                 })
             }
             const responseNext = await axios.get(response.data.next)
@@ -70,8 +72,8 @@ async function getGames(req, res) {
                         id: data.id,
                         name: data.name,
                         img: data.background_image,
-                        genre: data.genres.map(obj => obj.name)
-    
+                        genre: data.genres.map(obj => obj.name),
+                        rating: data.rating,
                     })
                 }
             }
@@ -82,8 +84,8 @@ async function getGames(req, res) {
                         id: data.id,
                         name: data.name,
                         img: data.background_image,
-                        genre: data.genres.map(obj => obj.name)
-    
+                        genre: data.genres.map(obj => obj.name),
+                        rating: data.rating,
                     })
                 }
             }
@@ -94,8 +96,8 @@ async function getGames(req, res) {
                         id: data.id,
                         name: data.name,
                         img: data.background_image,
-                        genre: data.genres.map(obj => obj.name)
-    
+                        genre: data.genres.map(obj => obj.name),
+                        rating: data.rating,
                     })
                 }
             }
@@ -106,8 +108,8 @@ async function getGames(req, res) {
                         id: data.id,
                         name: data.name,
                         img: data.background_image,
-                        genre: data.genres.map(obj => obj.name)
-    
+                        genre: data.genres.map(obj => obj.name),
+                        rating: data.rating,
                     })
                 }
             }
