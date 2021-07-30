@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Paginate from '../Paginate/paginate'
 import Card from '../../5-Card/GameCard'
@@ -8,25 +8,26 @@ import './Home.css'
 
 function Home() {
   const dispatch = useDispatch();
+  const videogames = useSelector((dataStore) => dataStore.searchVideogames);
 
-  const videogames = useSelector((dataStore) => dataStore.searchVideogames)
-
-  return (
+      return (
       <div>
         <Nav/>
         <FilterAndOrder/>
-        <div className="container">
-        <Paginate
-            videogame={videogames}
-            RenderComponent={Card}
-            title="Videogames"
-            pageLimit={7}
-            dataLimit={15}
-          />
+          <div className="container">
+            <Paginate
+              videogame={videogames}
+              RenderComponent={Card}
+              title="Videogames"
+              pageLimit={7}
+              dataLimit={15}
+            />
           </div>
-          
-      </div>
-    )
+    </div>
+      )
+    
+
+
   };
   
   export default Home;

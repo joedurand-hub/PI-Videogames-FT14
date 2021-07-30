@@ -5,8 +5,6 @@ import {Link} from 'react-router-dom';
 import './GameCard.css'
 
 export function GameCard({videogame}) { // Renderizo los datos en cada Card
-    
-  console.log("gameCard:", videogame)
   const dispatch = useDispatch();
 
     return (
