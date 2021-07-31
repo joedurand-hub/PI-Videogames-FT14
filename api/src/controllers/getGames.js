@@ -18,7 +18,6 @@ const {API_KEY} = process.env;
 async function getGames(req, res) {
 
     const { name } = req.query;
-    const gamesData = [];
     const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)
     const resultsGames = response.data.results.slice(0, 20)
     
@@ -55,7 +54,8 @@ async function getGames(req, res) {
         try {
 
             let gamesAllData = await Videogame.findAll({include: Genre})
-            for (let data of resultsGames) { // Traigo los 15.
+
+            for (let data of resultsGames) {
                 gamesAllData.push({
                 id: data.id,
                 name: data.name,
@@ -64,8 +64,8 @@ async function getGames(req, res) {
                 rating: data.rating,
                 })
             }
-            const responseNext = await axios.get(response.data.next)
-            function nextData() {
+            const responseNext = await axios.get(response.data.next) 
+            function nextData() { 
                 const resultsGamesNext = responseNext.data.results.slice(0, 20)
                     for (let data of resultsGamesNext) {
                         gamesAllData.push({
@@ -77,47 +77,53 @@ async function getGames(req, res) {
                     })
                 }
             }
-            function nextData15() {
-                const resultsGamesNext10 = responseNext.data.results.slice(0, 20)
-                    for (let data of resultsGamesNext10) {
-                        gamesAllData.push({
-                        id: data.id,
-                        name: data.name,
-                        img: data.background_image,
-                        genre: data.genres.map(obj => obj.name),
-                        rating: data.rating,
-                    })
-                }
+            
+            const newResponseNext = await axios.get(responseNext.data.next);
+            function nextData2() {
+                const resultsGamesNext = newResponseNext.data.results.slice(0, 20)
+                for (let data of resultsGamesNext) {
+                    gamesAllData.push({
+                    id: data.id,
+                    name: data.name,
+                    img: data.background_image,
+                    genre: data.genres.map(obj => obj.name),
+                    rating: data.rating,
+                })
+              }
             }
-            function nextData2_15() {
-                const resultsGamesNext10 = responseNext.data.results.slice(0, 20)
-                    for (let data of resultsGamesNext10) {
-                        gamesAllData.push({
-                        id: data.id,
-                        name: data.name,
-                        img: data.background_image,
-                        genre: data.genres.map(obj => obj.name),
-                        rating: data.rating,
-                    })
-                }
-            }
-            function nextData3_15() {
-                const resultsGamesNext10 = responseNext.data.results.slice(0, 20)
-                    for (let data of resultsGamesNext10) {
-                        gamesAllData.push({
-                        id: data.id,
-                        name: data.name,
-                        img: data.background_image,
-                        genre: data.genres.map(obj => obj.name),
-                        rating: data.rating,
-                    })
-                }
-            }
-            nextData();
-            nextData15();
-            nextData2_15();
-            nextData3_15();
 
+            const newResponseNext2 = await axios.get(newResponseNext.data.next);
+            function nextData3() {
+                const resultsGamesNext = newResponseNext2.data.results.slice(0, 20)
+                for (let data of resultsGamesNext) {
+                    gamesAllData.push({
+                    id: data.id,
+                    name: data.name,
+                    img: data.background_image,
+                    genre: data.genres.map(obj => obj.name),
+                    rating: data.rating,
+                })
+              }
+            }
+
+            const newResponseNext3 = await axios.get(newResponseNext2.data.next);
+            function nextData4() {
+                const resultsGamesNext = newResponseNext3.data.results.slice(0, 20)
+                for (let data of resultsGamesNext) {
+                    gamesAllData.push({
+                    id: data.id,
+                    name: data.name,
+                    img: data.background_image,
+                    genre: data.genres.map(obj => obj.name),
+                    rating: data.rating,
+                })
+              }
+            }
+
+            nextData();
+            nextData2();
+            nextData3();
+            nextData4();
             return res.json(gamesAllData)
         }
          catch (error) {
