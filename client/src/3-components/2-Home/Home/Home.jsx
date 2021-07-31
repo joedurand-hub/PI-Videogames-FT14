@@ -9,7 +9,7 @@ import './Home.css'
 function Home() {
   const dispatch = useDispatch();
   const videogames = useSelector((dataStore) => dataStore.searchVideogames);
-
+  console.log(videogames)
       return (
       <div>
         <Nav/>

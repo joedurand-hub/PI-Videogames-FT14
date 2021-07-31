@@ -27,6 +27,7 @@
 }
 
 .formCreate .form .inputs strong {
+    box-shadow: 0px 0px 20px 0px rgb(50, 196, 13);
     font-size: 22px;
 }
 
@@ -82,11 +83,19 @@
 }
 
 /* GENRES CSS */
+
 .formCreate .form .genres {
     display: flex;
     flex-direction: column;
     width: 32%;
 
+}
+
+.formCreate .form .genres strong {
+    box-shadow: 0px 0px 20px 0px rgb(159, 13, 196);
+    font-size: 22px;
+    width: 300px;
+    margin-left: 15px;
 }
 
 .formCreate .form .genres label {
@@ -126,6 +135,14 @@
     display: flex;
     flex-direction: column;
     width: 32%;
+    margin-left: 50px;
+}
+
+.formCreate .form .platforms strong {
+    box-shadow: 0px 0px 20px 0px rgb(138, 13, 196);
+    font-size: 22px;
+    width: 320px;
+    margin-left: 80px;
 }
 
 .formCreate .form .platforms label {

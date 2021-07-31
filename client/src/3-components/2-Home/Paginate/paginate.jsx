@@ -22,12 +22,7 @@ export function Paginate({ videogame, title, dataLimit, load }) {
         setCurrentPage((pages) => pages - 1)
     }
 
-    if(videogame.length <= 0) {
-        return (
-          <h1> Cargando... </h1>
-        )
-      } else {
-        return (
+    return (
         <div>
        <div className="containerPagination">
         <h1>{title}</h1>
@@ -47,8 +42,8 @@ export function Paginate({ videogame, title, dataLimit, load }) {
 
     </div>
       </div>
-        )
-      }
+  )
+      
   
   }
 

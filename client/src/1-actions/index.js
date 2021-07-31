@@ -1,17 +1,17 @@
 import axios from 'axios';
 
 // Type de las actions
-export const VIDEOGAME_DETAIL_FOR_ID_CARD = "VIDEOGAME_DETAIL_FOR_ID_CARD"; // Id
-export const SEARCH_VIDEOGAME             = "SEARCH_VIDEOGAME";            // Name o todos
-export const ADD_NEW_VIDEOGAME            = "ADD_NEW_VIDEOGAME";            // Añadir uno nuevo
-export const GET_GENRES                   = "GET_GENRES";                   // Géneros
-export const FILTER_BY_GENRE              = 'FILTER_BY_GENRE';              // Trae los que incluyan un género (no excluye)
-export const FILTER_BY_CREATED            = 'FILTER_BY_CREATED';            // Si viene de la DB o la API
-export const ORDER_ASC_NAME               = "ORDER_ASC_NAME";
-export const ORDER_ASC_RATING             = "ORDER_ASC_RATING";
-export const ORDER_DESC_NAME              = "ORDER_DESC_NAME";
-export const ORDER_DESC_RATING            = "ORDER_DESC_RATING";
-export const RESET                        = 'RESET';                        // Seteo valores en 0
+export const VIDEOGAME_DETAIL_FOR_ID_CARD = "VIDEOGAME_DETAIL_FOR_ID_CARD";
+export const SEARCH_VIDEOGAME             = "SEARCH_VIDEOGAME";
+export const ADD_NEW_VIDEOGAME            = "ADD_NEW_VIDEOGAME"; 
+export const GET_GENRES                   = "GET_GENRES"; 
+export const FILTER_BY_GENRE              = 'FILTER_BY_GENRE'; 
+export const FILTER_BY_CREATED            = 'FILTER_BY_CREATED';
+export const AZ                           = "AZ";
+export const ZA                           = "ZA";
+export const ASC                          = "ASC";
+export const DESC                         = "DESC";
+export const RESET                        = 'RESET';  
 
 export const SearchForGamesByName = (name) => async (dispatch) => {
     try {
@@ -66,45 +66,12 @@ export function filterByGenre(payload) {
 export function filterCreated(payload) {  
     return { type: FILTER_BY_CREATED, payload }    
 };
-
-export const orderAscByNameAndRating = (type) => (dispatch, getState) => {
-    const filtered = getState().searchVideogames;
-    let videogamesOrder = []
-
-    if(type === "ASC_NAME") {
-        videogamesOrder = filtered.sort((a, b) => {
-            if(a.name > b.name) return 1;
-            if(a.name < b.name) return -1;
-            return 0;
-        })
-    } else if(type === "ASC_RATING") {
-        videogamesOrder = filtered.sort(
-            (a, b) => a.rating - b.rating
-        )
-    }
+export const orderBy = (sort) => (dispatch) => {  
+    //console.log(sort)    
     dispatch({
-        type: ORDER_ASC_RATING, 
-        payload: {videogamesOrder, name: type}
-    })
-}
-
-export const orderDescByNameAndRating = (type) => (dispatch, getState) => {
-    const filtered = getState().searchVideogames;
-    let videogamesOrder = []
-      
-    if (type === "DESC_NAME") {
-        videogamesOrder = filtered.sort((a, b) => {
-            if (a.name < b.name) return 1;
-            if (a.name > b.name) return -1;
-            return 0;
-        });
-    } else if (type === "DESC_RATING") {
-        videogamesOrder = filtered.sort(
-            (a, b) => b.rating - a.rating
-        );
-    }
-    dispatch({type: ORDER_DESC_RATING, payload: {videogamesOrder, name: type} });
-}
+        type: sort,        
+      })    
+  };
 
 export const resetAll = () => { // Feature no implementada
     return (dispatch) => {

@@ -36,8 +36,6 @@ export function Form() {
     }
   }
 
-  console.log("Debajo de handleInputChange, setGame:", setGame)
-
   const handleSubmit = function(e) { 
     e.preventDefault();
 
@@ -51,17 +49,11 @@ export function Form() {
       platforms: game.platforms,
       };
 
-      console.log("Debajo de handleSubmit, videogameObject:", videogameObject.genres)
-      console.log("Debajo de handleSubmit, game.genres:", game.genres)
-      // Despacho la creación del juego, reseteo sus datos en 0 y doy un alerta de que se creó
+
       dispatch(postGame(videogameObject));
       e.target.reset(); 
       alert("Videogame created!");
       
-
-      console.log("Debajo de dispatch, videogameObject:", videogameObject.genres)
-      console.log("Debajo de dispatch, game.genres:", game.genres)
-
       setGame({
         name: "",
         description: "",
@@ -71,26 +63,11 @@ export function Form() {
         genres: [],
         platforms: [],
       });
-      
-      console.log("Debajo de setGame, videogameObject:", videogameObject.genres)
-      console.log("Debajo de setGame, game.genres:", game.genres)
+
     };
-  //   const handleGenres = (e) => {
-  //     let flag = true
-  //     genres.forEach((c) => {
-  //         if (e.target.value === c) {
-  //             setGenres(genres.filter(a => e.target.value !== a))
-  //             return flag = false
-  //         }
-  //     })
-  //     if (flag) {
-  //         setGenres(genres.concat(e.target.value))
-  //     }
-  // }
 
   return (
     <div className="formCreate">
-
       <div>
         <Nav/>
       </div>
