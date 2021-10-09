@@ -20,5 +20,4 @@ Proyecto Individual de Henry, para su desarrollo utilicé la api de Rawg que pos
 - Paginado de 15 Cards por página
 - Opciones para filtrar por género, y ordenamiento Ascendente y Descendente tanto por rating como por orden alfabético, así como un filtro para diferenciar a los de la base de datos, de la API y todos.
 - Formulario controlado para crear información de un videogame.
-- 
-Link video project: https://www.linkedin.com/posts/joeldurand0_hola-gente-les-presento-mi-proyecto-individual-activity-6828039138663530496--SrJ
+Link de LinkedIn con video del proyecto: https://www.linkedin.com/posts/joeldurand0_hola-gente-les-presento-mi-proyecto-individual-activity-6828039138663530496--SrJ
